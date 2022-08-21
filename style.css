@@ -15,7 +15,7 @@ body{
     align-items: center;
 }
 .title {
-    color: rgb(255, 255, 255);
+    color: rgb(249, 177, 177);
     font-size: 100px;
     margin-top: 20px;
     margin-bottom: 5px;
@@ -42,6 +42,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 300px;
 }
 
 .score {

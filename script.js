@@ -1,32 +1,28 @@
+const panels = document.querySelectorAll('.panel');
+
+
+
 function computerPlay(){
     return Math.floor(Math.random()*3);
 }
 
-function getPlayerChoice(){
-    let playerInput = prompt("Choose Rock, Paper or Scissors!")
-    return playerInput.toLowerCase();
-}
-
-function convertChoiceToInt() {
-    const playerChoice = getPlayerChoice();
-    if (playerChoice === "rock") {
+function convertChoiceToInt(choice) {
+    if (choice === "rock") {
         return 0; 
-    } else if (playerChoice === "paper") {
+    } else if (choice === "paper") {
         return 1;
-    } else if (playerChoice === "scissors") {
+    } else{
         return 2;
-    } else {
-        alert("you didn't type in a valid options, try again!")
-        return convertChoiceToInt()
-    }
+    } 
 }
 
-function PlayRPC(){
-    const playerChoice = convertChoiceToInt()
+function PlayRPC(choice){
+    const playerChoice = convertChoiceToInt(choice)
     const computerChoice = computerPlay()
     console.log(computerChoice)
     console.log(playerChoice)
     if (playerChoice === 0 && computerChoice === 2){
+
         alert("You won! Rock beats Scissors")
         return 1
     } else if (playerChoice === 2 && computerChoice === 1){
@@ -51,11 +47,13 @@ function PlayRPC(){
 }
 
 function game(){
-    let result
-    let playerTally = 0
-    let computerTally = 0
+    console.log('ran')
+    let result;
+    let playerTally = 0;
+    let computerTally = 0;
     for (let i = 0; i <5; i++) {
-        result = PlayRPC()
+        const choice = this.dataset.choice;
+        result = PlayRPC(choice)
         if (result === 1) {
             playerTally++    
         }else{
@@ -69,3 +67,5 @@ function game(){
     }
 }
 
+
+panels.forEach(choice => choice.addEventListener('click', game));
