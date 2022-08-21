@@ -1,0 +1,94 @@
+html{
+    background:url(https://source.unsplash.com/76dgUcMupv4/1920x1080) center center fixed;
+    background-size: cover;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title {
+    color: rgb(255, 255, 255);
+    font-size: 100px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-family: 'Dancing Script', cursive;
+}
+
+.scoreboard {
+    color: rgb(255, 255, 255);
+}
+.players {
+    display: flex;
+    justify-content: space-between;
+    min-width: 700px;
+}
+
+.player h2 {
+    margin-top: 5px;
+    margin-bottom: 2px;
+    font-size: 50px;
+    -webkit-text-stroke: 1px rgb(2, 2, 2);
+}
+
+.player{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score {
+    font-size: 50px;
+    margin-top: 2px;
+}
+
+.panels {
+    display: flex;
+    justify-content: space-between;
+    min-width: 700px;
+    gap: 40px
+}
+
+.panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+.rock { background-image:url(https://source.unsplash.com/ctWw2S9VqOI/1000x1000); }
+.paper { background-image:url(https://source.unsplash.com/MldQeWmF2_g/1000x1000); }
+.sissors { background-image:url(https://source.unsplash.com/SmocKx2oDZc/1000x1000); }
+
+.panel p{
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    -webkit-text-stroke: 1px rgb(2, 2, 2);
+    font-size: 50px;
+}
+
+.winner {
+    position: fixed;
+    width:100vh;
+    height:100vh;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+.loser {
+    transform:translateY(-500%); 
+}
+
+.intermission {
+    transform: translateY(500%);
+    overflow: hidden;
+}

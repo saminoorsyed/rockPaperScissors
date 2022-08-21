@@ -4,11 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js"></script>
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <div class="game">
+        <h1 class="title">Rock Paper Scissors</h1>
+        <h1 class="title">against a tiger</h1>
+    </div>
+    <div class="scoreboard">
+        <div class="players">
+            <div class = 'player'>
+                <h2>You</h2>
+                <p class="score">0</p>
+            </div>
+            <div class = 'player'>
+                <h2> The Tiger</h2>
+                <p class="score">0</p>
+            </div>
+        </div>
+    </div>
+    <div class="panels">
+        <div class="panel rock" data-choice="rock">
+            <p>Rock</p>
+          </div>
+          <div class="panel paper" data-choice="paper">
+            <p>Paper</p>
+          </div>
+          <div class="panel sissors" data-choice="sissors">
+            <p>Scissors</p>
+          </div>
+    </div>
     
 </body>
 </html>
