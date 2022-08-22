@@ -65,9 +65,16 @@ body{
     height: 200px;
     overflow: hidden;
 }
+
+.panels img {
+    height: 200px;
+    width: 200px;
+    background-color: transparent;
+}
 .rock { background-image:url(https://source.unsplash.com/ctWw2S9VqOI/1000x1000); }
 .paper { background-image:url(https://source.unsplash.com/MldQeWmF2_g/1000x1000); }
-.sissors { background-image:url(https://source.unsplash.com/SmocKx2oDZc/1000x1000); }
+.scissors { background-image:url(https://source.unsplash.com/SmocKx2oDZc/1000x1000); }
+
 
 .panel p{
     color: rgb(255, 255, 255);
@@ -83,6 +90,14 @@ body{
     left: 50%;
     top: 0;
     transform: translateX(-50%);
+}
+
+.hidden-winner{
+    transform: translateY(-500%);
+}
+
+.winner img {
+    transform: translateY(-500%);
 }
 
 .loser {

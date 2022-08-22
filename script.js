@@ -1,71 +1,79 @@
 const panels = document.querySelectorAll('.panel');
+const player = document.querySelector('.you');
+const comp = document.querySelector('.computer');
 
+let playerScore = 0;
+let compScore = 0;
+let p = document.createElement('p');
+let playerWon = true;
+let choice;
 
-
-function computerPlay(){
+function compPlay(){
     return Math.floor(Math.random()*3);
 }
 
-function convertChoiceToInt(choice) {
-    if (choice === "rock") {
-        return 0; 
-    } else if (choice === "paper") {
-        return 1;
-    } else{
-        return 2;
-    } 
-}
-
-function PlayRPC(choice){
-    const playerChoice = convertChoiceToInt(choice)
-    const computerChoice = computerPlay()
-    console.log(computerChoice)
-    console.log(playerChoice)
-    if (playerChoice === 0 && computerChoice === 2){
-
-        alert("You won! Rock beats Scissors")
-        return 1
-    } else if (playerChoice === 2 && computerChoice === 1){
-        alert("You won! Scissors beats Paper")
-        return 1
-    }else if (playerChoice === 1 && computerChoice === 0){
-        alert("You won! Paper beats Rock")
-        return 1
-    }else if (playerChoice === 0 && computerChoice === 1){
-        alert("You lost! Rock beats Scissors")
-        return 0
-    }else if (playerChoice === 1 && computerChoice === 2){
-        alert("You lost! Rock beats Scissors")
-        return 0
-    }else if (playerChoice === 2 && computerChoice === 1){
-        alert("You lost! Rock beats Scissors")
-        return 0
-    }else if (playerChoice === computerChoice){
-        alert("It's a tie! play again!")
-        PlayRPC()
-    }
-}
-
-function game(){
-    console.log('ran')
-    let result;
-    let playerTally = 0;
-    let computerTally = 0;
-    for (let i = 0; i <5; i++) {
-        const choice = this.dataset.choice;
-        result = PlayRPC(choice)
-        if (result === 1) {
-            playerTally++    
-        }else{
-            computerTally++
-        }
-    }
-    if (playerTally> computerTally) {
-        alert(`You won ${playerTally} of the 5 rounds`)
+function adjustScore(){
+    if (playerWon) {
+        playerScore++;
+        player.textContent = playerScore;
     }else {
-        alert(`The computer won ${computerTally} of the 5 rounds`)
+        compScore++;
+        comp.textContent = compScore;
     }
 }
 
+function displayWinner(){
+    panels.forEach(panel => panel.classList.add('loser'));
+        setTimeout(()=> {
+            panels.forEach(panel => panel.classList.remove('loser'));
+        },2000)
+
+}
+function game(){
+    const playerChoice = parseInt(this.dataset.choice);
+    const compChoice = compPlay()
+    console.log(compChoice);
+    console.log(playerChoice);
+    choice = this;
+    if (playerChoice === 0 && compChoice === 2){
+        console.log("You won! Rock beats Scissors");
+        playerWon = true;
+        adjustScore();
+        winner = 'rock'
+        displayWinner();
+    } else if (playerChoice === 2 && compChoice === 1){
+        console.log("You won! Scissors beats Paper");
+        playerWon = true;
+        adjustScore();
+        winner = 'scissors'
+        displayWinner();
+    }else if (playerChoice === 1 && compChoice === 0){
+        console.log("You won! Paper beats Rock");
+        playerWon = true;
+        adjustScore();
+        winner = 'paper'
+        displayWinner();
+    }else if (playerChoice === 2 && compChoice === 0){
+        console.log("You lost! Rock beats Scissors");
+        playerWon = false;
+        adjustScore();
+        winner = 'rock'
+        displayWinner();
+    }else if (playerChoice === 0 && compChoice === 1){
+        console.log("You lost! paper beats rock");
+        playerWon = false;
+        adjustScore();
+        winner = 'paper'
+        displayWinner();
+    }else if (playerChoice === 1 && compChoice === 2){
+        console.log("You lost! scissors beats paper");
+        playerWon = false;
+        adjustScore();
+        winner = 'scissors'
+        displayWinner();
+    }else if (playerChoice === compChoice){
+        console.log("It's a tie! choose again!");
+    }
+}
 
 panels.forEach(choice => choice.addEventListener('click', game));
