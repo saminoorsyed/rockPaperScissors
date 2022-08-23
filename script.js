@@ -1,5 +1,5 @@
 const panels = document.querySelectorAll('.panel');
-const player = document.querySelector('.you');
+const player = document.querySelector('.your-score');
 const comp = document.querySelector('.computer');
 const winPanel = document.querySelector('.win-panel');
 const title = document.querySelector('.game');
@@ -14,6 +14,7 @@ let choice;
 let winner;
 let congratulations;
 
+
 function compPlay(){
     return Math.floor(Math.random()*3);
 }
@@ -21,11 +22,11 @@ function compPlay(){
 function adjustScore(){
     if (playerWon) {
         playerScore++;
-        player.textContent = playerScore;
     }else {
         compScore++;
-        comp.textContent = compScore;
     }
+    comp.textContent = compScore;
+    player.textContent = playerScore;
 }
 
 function moveDivs (){
@@ -46,13 +47,15 @@ function growWinDiv(){
 
 function addWinText(){
     // adjust text based on winner
-    if (winner === 'tie'){
-        p.textContent = "It's a tie!";
+    if (winner === 'Tiger'){
+        p.textContent = "The Tiger ate you";
         p2.textContent = `${congratulations}`;
     }else if (winner === 'You') {
-
-    }else if (winner === 'Tiger'){
-
+        p.textContent = "The tiger didn't eat you... this time";
+        p2.textContent = `${congratulations}`;
+    }else if (winner === 'tie'){
+        p.textContent = "It's a tie!";
+        p2.textContent = `${congratulations}`;
     }else {
         p.textContent = `${congratulations}`;
         p2.textContent = `${winner} beats ${loser}.`;
@@ -61,9 +64,6 @@ function addWinText(){
     winPanel.appendChild(p2);
 }
 
-function flyUp(){
-    winPanel.classList.add('fly-up');
-}
 
 function removeWinText(){
     winPanel.removeChild(p);
@@ -74,27 +74,31 @@ function displayWinner(){
     moveDivs();
     setTimeout(growWinDiv, 500);
     setTimeout(addWinText, 1200);
-    setTimeout(growWinDiv, 4000);
-    setTimeout(removeWinText, 4000);
-    setTimeout(moveDivs, 5500);
+    setTimeout(growWinDiv, 2900);
+    setTimeout(removeWinText, 2900);
+    setTimeout(moveDivs, 3200);
+}
+
+function endGame(){
+    if (playerScore > compScore){
+        congratulations = `Human: ${playerScore} Tiger:${compScore}`;
+        winner = 'You';
+        displayWinner();
+    }else {
+        congratulations = `Tiger:${compScore} Human: ${playerScore}`;
+        winner = 'Tiger';
+        displayWinner();
+    }
+    playerScore = 0;
+        compScore = 0;
+        comp.textContent = compScore;
+        player.textContent = playerScore;
 }
 
 function game(){
     const playerChoice = parseInt(this.dataset.choice);
     const compChoice = compPlay();
-    if (playerScore+compScore === 5){
-        if (playerScore > compScore){
-            congratulations = "the tiger didn't eat you... this time";
-            winner = 'You';
-            playerScore = 0;
-            compScore = 0;
-        }else {
-            congratulations = 'The Tiger ate you';
-            winner = 'Tiger';
-            playerScore = 0;
-            compScore = 0;
-        }
-    }else if (playerChoice === 0 && compChoice === 2){
+    if (playerChoice === 0 && compChoice === 2){
         playerWon = true;
         adjustScore();
         congratulations = 'You beat the Tiger!'
@@ -138,8 +142,12 @@ function game(){
         displayWinner();
     }else if (playerChoice === compChoice){
         winner = 'tie';
-        congratulations = 'The Tiger gets bored when he ties.';
+        congratulations = 'The Tiger gets hungry when he ties.';
         displayWinner();
+    }
+
+    if (playerScore >= 3 || compScore >= 3){
+        setTimeout(endGame, 3200);
     }
 }
 
