@@ -49,6 +49,10 @@ function addWinText(){
     if (winner === 'tie'){
         p.textContent = "It's a tie!";
         p2.textContent = `${congratulations}`;
+    }else if (winner === 'You') {
+
+    }else if (winner === 'Tiger'){
+
     }else {
         p.textContent = `${congratulations}`;
         p2.textContent = `${winner} beats ${loser}.`;
@@ -75,9 +79,6 @@ function displayWinner(){
     setTimeout(moveDivs, 5500);
 }
 
-function endGame(){
-
-}
 function game(){
     const playerChoice = parseInt(this.dataset.choice);
     const compChoice = compPlay();
